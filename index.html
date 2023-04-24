@@ -2,6 +2,7 @@
 <html>
   <head>
     <title>Click the Ball</title>
+    <link rel="manifest" href="manifest.json">
     <style>
       #ball {
         position: absolute;
@@ -31,6 +32,17 @@
         font-size: 24px;
       }
     </style>
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+          navigator.serviceWorker.register('sw.js').then(function(registration) {
+            console.log('ServiceWorker registration successful with scope: ', registration.scope);
+          }, function(err) {
+            console.log('ServiceWorker registration failed: ', err);
+          });
+        });
+      }
+    </script>
   </head>
   <body>
     <h1>Click the Ball</h1>
